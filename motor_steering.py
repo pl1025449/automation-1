@@ -1,0 +1,16 @@
+"""
+Purpose:
+Convert the steering value into left and right motor speeds.
+"""
+from Motordriver import MotorRun, forward
+def set_motor_speeds(steering_val, base_speed=100):
+
+    left_speed = base_speed + steering_val
+    right_speed = base_speed - steering_val
+
+    left_speed = int(max(0, min(255, left_speed)))
+    right_speed = int(max(0, min(255, right_speed)))
+
+    print(f"L: {left_speed}, R: {right_speed}")
+    MotorRun(0, forward, left_speed)
+    MotorRun(1, forward, right_speed)
