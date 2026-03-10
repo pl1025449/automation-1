@@ -20,48 +20,76 @@
 </head>
 <body>
 
+<!-- Hidden iframe so Play/Stop does not replace the GUI page -->
+<iframe name="hiddenFrame" style="display:none;"></iframe>
+
 <table>
   <tr>
+
+    <!-- Raw camera stream -->
     <td style="height: 200px">
+      <!-- Change IP tomorrow if needed -->
       <img src="http://192.168.240.123:5000/stream" width="800" height="500" />
     </td>
 
     <td>
       <table class="controls-table">
+
+        <!-- Row 1 -->
         <tr>
           <td></td>
           <td style="height: 50px;">
-            <form action="http://192.168.240.123:5000/play" method="post">
-              <button type="submit">Play</button>
-            </form>
+            <button>Forward</button>
           </td>
           <td></td>
         </tr>
+
+        <!-- Row 2 -->
         <tr>
           <td style="height: 100px;"><button>Left</button></td>
+
+          <!-- CENTER CELL -->
           <td style="height: 100px;">
-            <form action="http://192.168.240.123:5000/stop" method="post">
+
+            <!-- Start automation -->
+            <form action="http://192.168.240.123:5000/play" method="post" target="hiddenFrame">
+              <button type="submit">Start</button>
+            </form>
+
+            <br>
+
+            <!-- Stop automation -->
+            <form action="http://192.168.240.123:5000/stop" method="post" target="hiddenFrame">
               <button type="submit">Stop</button>
             </form>
+
           </td>
+
           <td style="height: 100px;"><button>Right</button></td>
         </tr>
+
+        <!-- Row 3 -->
         <tr>
           <td></td>
           <td style="height: 50px;"><button>Backward</button></td>
           <td></td>
         </tr>
+
       </table>
     </td>
   </tr>
 
   <tr>
+
+    <!-- Processed stream -->
     <td style="height: 400px;">
+      <!-- Change IP tomorrow if needed -->
       <img src="http://192.168.240.123:5000/stream_processed" width="800" height="600" />
     </td>
-    <td style="height: 400px;">
 
+    <td style="height: 400px;">
     </td>
+
   </tr>
 </table>
 
