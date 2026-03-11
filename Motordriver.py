@@ -9,7 +9,7 @@ Pseudocode:
 4. Provide MotorRun() for individual motor control requests.
 5. Provide helper functions for stop and basic movement.
 """
-
+import pi_client
 try:
     import pi_client
 except ImportError:
@@ -87,7 +87,6 @@ def turn_left(speed: int = 120) -> None:
     """
     MotorRun(0, left, speed)
     MotorRun(1, left, speed)
-
 
 def turn_right(speed: int = 120) -> None:
     """
