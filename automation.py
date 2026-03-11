@@ -14,7 +14,7 @@ Pseudocode:
 """
 
 import time
-
+import processing_parallel
 from processing_parallel import process_frame
 from motor_steering import set_motor_speeds
 from Motordriver import stop_all
@@ -51,8 +51,6 @@ def stop_automation():
     stop_line_seen = False
     stop_time = None
     stop_all()
-
-
 def is_running():
     """
     Return whether automatic mode is currently active.
@@ -73,7 +71,7 @@ def update_automation(frame):
     global auto_running, stop_line_seen, stop_time
 
     # Always process the frame so the processed stream can still display overlays
-    out, steering_value, stop_line_detected = process_frame(frame)
+    out, steering_value, stop_line_detected, center_line = process_frame(frame)
 
     if not auto_running:
         return out
@@ -87,11 +85,11 @@ def update_automation(frame):
     # then stop completely
     if stop_line_seen:
         elapsed = time.time() - stop_time
-
+        time.sleep(6.5)
         if elapsed >= STOP_DELAY_SECONDS:
             stop_automation()
             return out
-
+    if center_line:
     # Normal line-following behavior
-    set_motor_speeds(steering_value)
+        set_motor_speeds(steering_value)
     return out
