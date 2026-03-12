@@ -15,8 +15,8 @@ def follow_line(theta, line_found):
         set_right_motor(right)
     else:
         # spin until center line is detected again
-        set_left_motor(SPIN_SPEED)
-        set_right_motor(-SPIN_SPEED)
+        MotorRun(0, forward, SPIN_SPEED)
+        MotorRun(1, backward, SPIN_SPEED)
 
 while True:
     theta, line_found = get_vision_result()  
