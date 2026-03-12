@@ -1,3 +1,5 @@
+from motor_steering import set_motor_speeds
+
 MAX_SPEED = 70
 SPIN_SPEED = 40
 
