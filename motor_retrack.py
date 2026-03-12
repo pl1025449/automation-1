@@ -13,8 +13,8 @@ def calc_motor_values(theta):
 def follow_line(theta, line_found):
     if line_found:
         left, right = calc_motor_values(theta)
-        set_left_motor(left)
-        set_right_motor(right)
+        MotorRun(0, forward, left)
+        MotorRun(1, backward, right)
     else:
         # spin until center line is detected again
         MotorRun(0, forward, SPIN_SPEED)
