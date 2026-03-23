@@ -163,4 +163,4 @@ def process_frame(frame):
         cv2.line(out, (x1, y1), (x2, y2), (0, 255, 255), 4)
         stop_line_detected = True
 
-    return out, steering_value, stop_line_detected
+    return out, steering_value, stop_line_detected, (left is not None and right is not None)
