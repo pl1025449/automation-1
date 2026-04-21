@@ -7,7 +7,6 @@ PI_URL = "http://192.168.240.123:5000/status"
 root = tk.Tk()
 root.title("messagebox")
 root.geometry("300x150")
-root.attributes('-topmost', True)
 root.withdraw()  # hide first
 
 label = tk.Label(root, text="We are not alone! ")
