@@ -2,7 +2,7 @@ import tkinter as tk
 import requests
 import time
 
-PI_URL = "http://192.168.240.123:5000/popup_status"
+PI_URL = "http://192.168.240.123:5000/status"
 
 root = tk.Tk()
 root.title("messagebox")
