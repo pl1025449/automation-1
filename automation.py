@@ -71,7 +71,7 @@ def update_automation(frame):
     global auto_running, stop_line_seen, stop_time
 
     # Always process the frame so the processed stream can still display overlays
-    out, steering_value, stop_line_detected, center_line = process_frame(frame)
+    out, steering_value, stop_line_detected, center_line,left,right = process_frame(frame)
 
     if not auto_running:
         return out
@@ -85,11 +85,17 @@ def update_automation(frame):
     # then stop completely
     if stop_line_seen:
         elapsed = time.time() - stop_time
-        time.sleep(6.5)
+        time.sleep(6.0)
         if elapsed >= STOP_DELAY_SECONDS:
             stop_automation()
             return out
     if center_line:
     # Normal line-following behavior
-        set_motor_speeds(steering_value)
+        _send_command('forward')
+    elif left:
+        set_motor_speeds(5.0)
+    elif right:
+        set_motor_speeds(-5.0)
+    else:
+       stop_automation()
     return out
